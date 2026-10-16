@@ -59,6 +59,14 @@ footer{height:24px}
 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.1em .02em .16em;margin:-.1em -.02em -.16em}
 .wi{display:inline-block;will-change:transform}
 .nums .num{min-width:2.4em}
+.about .lead{margin:0 0 56px}
+.more{display:grid;gap:36px}
+@media(min-width:800px){.more{grid-template-columns:repeat(3,1fr);gap:32px}}
+.about .more p{font-size:19px;line-height:1.5;max-width:36ch;margin:0}
+.lab{font:600 13px/1 Unbounded,sans-serif;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.lab::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--c);flex:none}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:52px 0 0;padding:0}
+.chips li{border:1.5px solid rgba(242,240,234,.35);border-radius:999px;padding:10px 18px;font-weight:500;font-size:16px}
 </style>
 </head>
 <body>
@@ -102,7 +110,15 @@ footer{height:24px}
 <section class="about" data-r>
   <div class="wrap">
     <h2>Обо мне</h2>
-    <p>Я Никита, CRM-администратор. Помогаю компаниям и бизнесу наводить порядок в работе с клиентами.</p>
+    <p class="lead">Каждый день работаю в Bitrix24 и amoCRM. Проекты разные: от прав доступа до аудита.</p>
+    <div class="more">
+      <div style="--c:#FF7A2F"><div class="lab">Как работаю</div><p>Разбираю вашу задачу и цифры продаж. Даю своё экспертное мнение и дельные советы.</p></div>
+      <div style="--c:#FFC93C"><div class="lab">С чем работаю</div><p>Настраиваю интеграции и вебхуки. Создаю собственные интеграции под ваш процесс.</p></div>
+      <div style="--c:#2ED3A1"><div class="lab">Что вы получите</div><p>Индивидуальный план активной работы в CRM под ваш бизнес. Помогу довести его до внедрения.</p></div>
+    </div>
+    <ul class="chips">
+      <li>Bitrix24</li><li>amoCRM</li><li>Вебхуки</li><li>Интеграции</li><li>onlinePBX</li><li>Mango</li><li>Билайн</li><li>МТС</li><li>МегаФон</li><li>Sipuni</li><li>Скорозвон</li><li>Wazzup</li>
+    </ul>
   </div>
 </section>
 
@@ -172,7 +188,7 @@ footer{height:24px}
 
   pop(document.querySelector(".hero h1"),true);
   pop(document.querySelector(".hero p"),false,.3);
-  [".offer h2",".offer p",".about p",".help h2",".help b",".help span",".contacts h2"].forEach(function(s){
+  [".offer h2",".offer p",".about h2",".about p",".about .lab",".help h2",".help b",".help span",".contacts h2"].forEach(function(s){
     document.querySelectorAll(s).forEach(function(el){pop(el,false);});
   });
 
@@ -182,6 +198,9 @@ footer{height:24px}
   gsap.utils.toArray(".help li").forEach(function(el){
     gsap.from(el,{x:-24,opacity:0,duration:.7,ease:"power2.out",scrollTrigger:{trigger:el,start:"top 92%",once:true}});
   });
+
+  gsap.from(".chips li",{scale:.85,y:14,opacity:0,duration:.5,ease:"back.out(2)",stagger:.05,
+    scrollTrigger:{trigger:".chips",start:"top 92%",once:true}});
 
   /* counters: spin up fast, then brake and stop on the result */
   document.querySelectorAll(".nums .it").forEach(function(it){
